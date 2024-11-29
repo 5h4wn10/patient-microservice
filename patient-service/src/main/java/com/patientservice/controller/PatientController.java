@@ -57,7 +57,7 @@ public class PatientController {
         return ResponseEntity.ok(patient);
     }
 
-    @PreAuthorize("hasAnyAuthority('DOCTOR', 'STAFF')")
+    //@PreAuthorize("hasAnyAuthority('DOCTOR', 'STAFF')")
     @GetMapping("/{id}")
     public ResponseEntity<PatientDTO> getPatientById(@PathVariable Long id) {
         PatientDTO patient = patientService.getPatientById(id);
