@@ -7,6 +7,9 @@ public class UserDTO {
     // Getters and setters
     @Getter
     private Long userId;
+
+    @Getter
+    private Long id;
     @Getter
     private String username;
     @Getter
@@ -19,6 +22,12 @@ public class UserDTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setFullName(String fullName) {

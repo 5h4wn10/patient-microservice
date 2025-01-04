@@ -20,7 +20,7 @@ public class PatientController {
     private PatientService patientService;
 
 
-    //@PreAuthorize("hasAnyAuthority('DOCTOR', 'STAFF')")
+    //@PreAuthorize("hasAnyRole('DOCTOR', 'STAFF')")
     @GetMapping
     public ResponseEntity<List<PatientDTO>> getAllPatients() {
         if (patientService.getAllPatients().isEmpty()) {
@@ -45,11 +45,12 @@ public class PatientController {
         }
     }
 
-    @PreAuthorize("hasAnyAuthority('PATIENT')")
+    //@PreAuthorize("hasAnyRole('PATIENT')")
     @GetMapping("/me")
     public ResponseEntity<?> getPatientInfo(Authentication authentication) {
         PatientDTO patient = patientService.getPatientForCurrentUser(authentication.getName());
-
+        System.out.println(authentication.getName());
+        System.out.println("FRÅN CONTROLLER: " + patient);
         if (patient == null) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access denied: User is not a patient.");
         }
